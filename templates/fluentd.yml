@@ -6,7 +6,7 @@ metadata:
   labels:
     chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
 data:
-  fluentd.conf: |-
+  fluent.conf: |-
     <source>
       @type forward
       port 24224

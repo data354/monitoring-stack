@@ -6,7 +6,7 @@ metadata:
   labels:
     chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
 data:
-  prometheus.yaml: |-
+  prometheus.yml: |-
     global:
       scrape_interval: {{ .Values.prometheus.config.global.scrape_interval}}
       scrape_timeout: {{ .Values.prometheus.config.global.scrape_timeout}}
