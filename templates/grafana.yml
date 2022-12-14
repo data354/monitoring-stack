@@ -1,23 +1,4 @@
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: grafana-conf
-  labels:
-    chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
-data:
-  prmetheus.yaml: |-
-    global:
-      scrape_interval: {{ .Values.grafana.config.global.scrape_interval}}
-      scrape_timeout: {{ .Values.grafana.config.global.scrape_timeout}}
-
-    scrape_configs:
-    {{- range .Values.grafana.config.sources }}
-      - job_name: {{ .name }}
-        static_configs:
-          - targets: [{{ join "," .targets }}]
-    {{- end }}
----
-apiVersion: v1
 kind: Service
 metadata:
   name: grafana
