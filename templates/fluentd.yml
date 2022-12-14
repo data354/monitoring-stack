@@ -36,7 +36,7 @@ spec:
     - port: 24224
       targetPort: 24224
       protocol: TCP
-      nodePort: 30002
+      nodePort: 30005
       name: http
   selector:
     app: fluentd

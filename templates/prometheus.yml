@@ -23,9 +23,11 @@ kind: Service
 metadata:
   name: prometheus
 spec:
+  type: NodePort
   ports:
     - port: 9090
       targetPort: 9090
+      nodePort: 3004
       protocol: TCP
       name: http
   selector:
