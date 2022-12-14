@@ -1,3 +1,4 @@
+{{- with .Values.fluentd }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -71,3 +72,4 @@ spec:
         - name: fluentd-conf
           configMap:
             name: fluentd-conf
+{{- end -}}
