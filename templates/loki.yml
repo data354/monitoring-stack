@@ -17,8 +17,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: loki
-  app: loki
   labels:
+    app: loki
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   selector:

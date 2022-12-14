@@ -35,8 +35,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus
-  app: prometheus
   labels:
+    app: prometheus
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   selector:

@@ -45,8 +45,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fluentd
-  app: fluentd
   labels:
+    app: fluentd
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   selector:
