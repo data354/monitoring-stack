@@ -27,7 +27,7 @@ spec:
   ports:
     - port: 9090
       targetPort: 9090
-      nodePort: 3004
+      nodePort: 30004
       protocol: TCP
       name: http
   selector:
@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}-prometheus
-        image: prometheus/prometheus
+        image: prom/prometheus
         volumeMounts:
             - name: prometheus-conf
               mountPath: /etc/prometheus/prometheus.yml
