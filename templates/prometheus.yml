@@ -55,7 +55,7 @@ spec:
         image: prom/prometheus
         volumeMounts:
             - name: prometheus-conf
-              mountPath: /etc/prometheus/prometheus.yml
+              mountPath: /etc/prometheus/
               readOnly: true
       volumes:
         - name: prometheus-conf

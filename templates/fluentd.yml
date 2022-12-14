@@ -66,7 +66,7 @@ spec:
             value: "{{ .Values.fluentd.config.loki_url }}"
         volumeMounts:
             - name: fluentd-conf
-              mountPath: /fluentd/etc/fluent.conf
+              mountPath: /fluentd/etc/
               readOnly: true
       volumes:
         - name: fluentd-conf
