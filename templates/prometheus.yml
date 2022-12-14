@@ -1,4 +1,4 @@
-{{- with .Values.prometheus }}
+{{- if .Values.prometheus }}
 apiVersion: v1
 kind: ConfigMap
 metadata:

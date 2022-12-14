@@ -1,4 +1,4 @@
-{{- with .Values.fluentd }}
+{{- if .Values.fluentd }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
