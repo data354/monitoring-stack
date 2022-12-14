@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentd-conf
+  labels:
+    chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
+data:
+  fluentd.conf: |-
+    <source>
+      @type forward
+      port 24224
+    </source>
+
+    # <match **.*>
+    #   @type stdout/
+    # </match>
+
+    <match loki.**>
+      @type loki
+      url "#{ENV['LOKI_URL']}"
+      extra_labels {"job":"fluentd"}
+      <buffer>
+        flush_interval 10s
+        flush_at_shutdown true
+      </buffer>
+    </match>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fluentd
+spec:
+  type: NodePort
+  ports:
+    - port: 24224
+      targetPort: 24224
+      protocol: TCP
+      nodePort: 30002
+      name: http
+  selector:
+    app: fluentd
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluentd
+  app: fluentd
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  selector:
+    matchLabels:
+      app: fluentd
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fluentd
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}-fluentd
+        image: grafana/fluent-plugin-loki
+        env:
+          - name: LOKI_URL
+            value: "{{ .Values.fluentd.config.loki_url }}"
+        volumeMounts:
+            - name: fluentd-conf
+              mountPath: /fluentd/etc/fluent.conf
+              readOnly: true
+      volumes:
+        - name: fluentd-conf
+          configMap:
+            name: fluentd-conf
