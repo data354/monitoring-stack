@@ -22,10 +22,6 @@ metadata:
     app: grafana
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
-  securityContext:
-    runAsUser: 472
-    runAsGroup: 472
-    fsGroup: 472
   selector:
     matchLabels:
       app: grafana
@@ -35,6 +31,10 @@ spec:
       labels:
         app: grafana
     spec:
+      securityContext:
+        runAsUser: 472
+        runAsGroup: 472
+        fsGroup: 472
       containers:
       - name: {{ .Chart.Name }}-grafana
         image: grafana/grafana
