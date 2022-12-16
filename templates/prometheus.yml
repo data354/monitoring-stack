@@ -26,7 +26,7 @@ spec:
   ports:
     - port: 9090
       targetPort: 9090
-      nodePort: 30004
+      nodePort: 30102
       protocol: TCP
       name: http
   selector:
