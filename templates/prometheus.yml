@@ -9,7 +9,6 @@ data:
   prometheus.yml: |-
     global:
       scrape_interval: {{ .Values.prometheus.config.global.scrape_interval}}
-      scrape_timeout: {{ .Values.prometheus.config.global.scrape_timeout}}
 
     scrape_configs:
     {{- range .Values.prometheus.config.sources }}

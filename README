@@ -1,0 +1,55 @@
+# **Data-fair**
+
+<img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/data354-helm"
+alt="Markdown Monster icon"
+style=" margin-right: 10px;" />
+
+<img src="https://data-fair.github.io/3/logo.png"
+alt="Markdown Monster icon"
+style="float: left; margin-right: 10px;" />
+
+<img src="https://static.wixstatic.com/media/84b0cf_beb914d4ae1c4a67a943e2a56de2b767~mv2.png/v1/fill/w_216,h_65,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logo-data354_CL.png"/>
+
+MS54 and its ecosystem enable the implementation of a data sharing platform (internal or opendata) and visualizations. This platform can be aimed at the general public, who can access the data through adapted interactive visualizations, as well as at a more expert public who can access the data through APIs.
+
+## **Prerequisites**
+```
+Kubernetes 1.16+
+Helm 3+
+```
+
+## **Managing package**
+
+### Get Helm Repository Info
+
+```bash
+helm repo add data354-helm https://data354.github.io/helm
+helm repo update
+```
+
+### Installing Helm Chart
+
+```bash
+helm install [RELEASE_NAME] data354-helm/monitoring-stack
+```
+Note that the above command will install Superset into current namespace of your Kubernetes cluster. If you want to use another namespace specify it:
+
+```bash
+helm install [RELEASE_NAME] data354-helm/monitoring-stack  --namesape monitoring-stack 
+```
+``data-fair`` namespace which must exist before.
+
+### Uninstalling Helm Chart
+
+```bash
+helm uninstall [RELEASE_NAME]
+```
+This removes all the Kubernetes components associated with the chart and deletes the release.
+
+See [*helm uninstall*](https://helm.sh/docs/helm/helm_uninstall/) for command documentation.
+
+### Upgrading Helm Chart
+
+```bash
+helm upgrade [RELEASE_NAME] data354-helm/data-fair
+```
