@@ -1,5 +1,5 @@
 apiVersion: v2
-name: monitor-stack
+name: monitoring-stack
 description: A Stack for managing logging and monitoring
 maintainers:
   - name: Edy Koffi
