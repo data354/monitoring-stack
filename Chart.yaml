@@ -1,6 +1,18 @@
 apiVersion: v2
 name: monitor-stack
-description: A Helm chart for Kubernetes
+description: A Stack for managing logging and monitoring
+maintainers:
+  - name: Edy Koffi
+    email: edy.koffi@gmail.com
+    url: https://www.linkedin.com/in/edy-koffi-948494192/
+keywords:
+  - "monitoring"
+  - "logging"
+  - "data354"
+  - "kubernetes"
+  - "helm"
+sources:
+  - "https://github.com/data354/monitoring-stack"
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -15,7 +27,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.0
+version: 1.0.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
