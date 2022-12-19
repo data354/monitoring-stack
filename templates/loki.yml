@@ -3,11 +3,15 @@ kind: Service
 metadata:
   name: loki
 spec:
+  {{ if .Values.loki.nodeport -}}
   type: NodePort
+  {{ end -}}
   ports:
     - port: 3100
       targetPort: 3100
+      {{ if .Values.loki.nodeport -}}
       nodePort: 30101
+      {{ end -}}
       protocol: TCP
       name: http
   selector:

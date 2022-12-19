@@ -11,42 +11,34 @@ data:
       @type forward
       port 24224
     </source>
-
-    # <match **.*>
-    #   @type stdout/
-    # </match>
-
-    <match airflow.**>
+    {{ range .Values.fluentd.config.tags }}
+    <match {{ .name }}>
       @type loki
       url "#{ENV['LOKI_URL']}"
-      extra_labels {"job":"airflow"}
+      extra_labels {{ .extra_labels }}
       <buffer>
-        flush_interval 10s
-        flush_at_shutdown true
+        flush_interval {{ .flush_interval }}
+        flush_at_shutdown {{ .flush_at_shutdown }}
       </buffer>
     </match>
+    {{ end }}
 
-    <match api.**>
-      @type loki
-      url "#{ENV['LOKI_URL']}"
-      extra_labels {"job":"api"}
-      <buffer>
-        flush_interval 10s
-        flush_at_shutdown true
-      </buffer>
-    </match>
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: fluentd
 spec:
+  {{ if .Values.fluentd.nodeport -}}
   type: NodePort
+  {{ end -}}
   ports:
     - port: 24224
       targetPort: 24224
       protocol: TCP
+      {{ if .Values.fluentd.nodeport -}}
       nodePort: 30103
+      {{ end -}}
       name: http
   selector:
     app: fluentd

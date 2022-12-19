@@ -4,11 +4,15 @@ kind: Service
 metadata:
   name: grafana
 spec:
+  {{ if .Values.grafana.nodeport -}}
   type: NodePort
+  {{ end -}}
   ports:
     - port: 3000
       targetPort: 3000
+      {{ if .Values.grafana.nodeport -}}
       nodePort: 30100
+      {{ end -}}
       protocol: TCP
       name: http
   selector:

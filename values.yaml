@@ -1,18 +1,14 @@
 grafana:
   enabled: true
+  nodeport: 30100
 
 loki:
   enabled: true
-
-fluentd:
-  enabled: true
-  config:
-    loki_url: "http://loki:3100"
-    flush_interval: 5s
-    flush_at_shutdown: true
+  nodeport: 30101
 
 prometheus:
   enabled: true
+  nodeport: 30102
   config:
     global:
       scrape_interval: 5s
@@ -20,6 +16,23 @@ prometheus:
       - name: grafana
         targets:
           - "grafana:3000"
+
       - name: loki
         targets:
           - "loki:3100"
+
+fluentd:
+  enabled: true
+  nodeport: 30103
+  config:
+    loki_url: "http://loki:3100"
+    tags:
+      - name: "api.**"
+        flush_interval: 5s
+        flush_at_shutdown: true
+        extra_labels: '{"job":"api"}'
+
+      - name: "airflow.**"
+        flush_interval: 5s
+        flush_at_shutdown: true
+        extra_labels: '{"job":"airflow"}'

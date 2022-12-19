@@ -22,11 +22,15 @@ kind: Service
 metadata:
   name: prometheus
 spec:
+  {{ if .Values.prometheus.nodeport -}}
   type: NodePort
+  {{ end -}}
   ports:
     - port: 9090
       targetPort: 9090
+      {{ if .Values.prometheus.nodeport -}}
       nodePort: 30102
+      {{ end -}}
       protocol: TCP
       name: http
   selector:
