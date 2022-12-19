@@ -1,7 +1,7 @@
 apiVersion: v2
 name: monitoring-stack
 description: A Stack for managing logging and monitoring
-version: 0.1.0
+version: 1.0.0
 appVersion: "1.17.0"
 maintainers:
   - name: Edy Koffi
