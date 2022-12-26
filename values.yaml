@@ -20,6 +20,10 @@ prometheus:
       - name: loki
         targets:
           - "loki:3100"
+      
+      - name: mystack-statsd
+        targets:
+          - "mystack-statsd:9102"
 
 fluentd:
   enabled: true

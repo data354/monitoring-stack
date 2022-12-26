@@ -7,19 +7,35 @@ metadata:
     chart: "{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}"
 data:
   fluent.conf: |-
+    # Configuration de base de Fluentd
+    <system>
+      # Nombre de threads utilisés pour traiter les données de journalisation
+      workers 4
+    </system>
+
     <source>
       @type forward
       port 24224
     </source>
+
+    # Configuration du buffer de Fluentd
+    <buffer>
+      # Taille maximale du buffer en mémoire
+      memory_limit_mb  4096
+      
+      # Taille maximale des données stockées dans le buffer en mémoire avant qu'elles ne soient écrites sur disque
+      chunk_limit_size 104857600
+      
+      # Durée de rétention des données dans le buffer avant qu'elles ne soient écrites sur disque
+      retention_time 3600
+    </buffer>
+
     {{ range .Values.fluentd.config.tags }}
     <match {{ .name }}>
       @type loki
       url "#{ENV['LOKI_URL']}"
       extra_labels {{ .extra_labels }}
-      <buffer>
-        flush_interval {{ .flush_interval }}
-        flush_at_shutdown {{ .flush_at_shutdown }}
-      </buffer>
+      send_threads  4
     </match>
     {{ end }}
 
@@ -67,9 +83,9 @@ spec:
           - name: LOKI_URL
             value: "{{ .Values.fluentd.config.loki_url }}"
         volumeMounts:
-            - name: fluentd-conf
-              mountPath: /fluentd/etc
-              readOnly: true
+          - name: fluentd-conf
+            mountPath: /fluentd/etc
+            readOnly: true
       volumes:
         - name: fluentd-conf
           configMap:
