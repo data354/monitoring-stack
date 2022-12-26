@@ -11,7 +11,7 @@ spec:
     - port: 3000
       targetPort: 3000
       {{ if .Values.grafana.nodeport -}}
-      nodePort: 30100
+      nodePort: {{ .Values.grafana.nodeport }}
       {{ end -}}
       protocol: TCP
       name: http

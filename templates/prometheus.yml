@@ -29,7 +29,7 @@ spec:
     - port: 9090
       targetPort: 9090
       {{ if .Values.prometheus.nodeport -}}
-      nodePort: 30102
+      nodePort: {{ .Values.prometheus.nodeport }}
       {{ end -}}
       protocol: TCP
       name: http
