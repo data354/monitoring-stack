@@ -33,6 +33,7 @@ data:
     {{ range .Values.fluentd.config.tags }}
     <match {{ .name }}>
       @type loki
+      time_format %Y-%m-%d %H:%M:%S
       url "#{ENV['LOKI_URL']}"
       extra_labels {{ .extra_labels }}
       send_threads  4
