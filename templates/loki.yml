@@ -41,27 +41,28 @@ data:
       alertmanager_url: http://localhost:9093
 
     ingester:
-      chunk_idle_period = "10m" # Période de temps avant que le chunk ne soit considéré comme inactif
-      chunk_target_size = "2m" # Taille cible du chunk
-      max_chunk_age = "1h" # Durée de vie maximale d'un chunk
-      max_transfer_retries = 20 # Nombre maximal de tentatives de transfert d'un chunk
+      chunk_idle_period: "10m" # Période de temps avant que le chunk ne soit considéré comme inactif
+      chunk_target_size: "2m" # Taille cible du chunk
+      max_chunk_age: "1h" # Durée de vie maximale d'un chunk
+      chunk_block_size: 104857600
+      max_transfer_retries: 20 # Nombre maximal de tentatives de transfert d'un chunk
 
     table_manager:
-      retention_deletes_enabled = true # Activer la suppression des données de retention
-      retention_period = "336h" # Période de retention des données en heures
+      retention_deletes_enabled: true # Activer la suppression des données de retention
+      retention_period: "336h" # Période de retention des données en heures
 
     query_log_ingest:
-     enabled = true # Activer l'ingestion des journaux de requêtes
+     enabled: true # Activer l'ingestion des journaux de requêtes
 
     compactor:
-      schedule = "0 0 * * *" # Planification de l'opération de compactage (toutes les heures)
+      schedule: "0 0 * * *" # Planification de l'opération de compactage (toutes les heures)
 
     limits_config:
-      enforce_metric_name = true # Imposer un nom de métrique valide pour toutes les requêtes
-      max_lookback_period = "144h" # Période de recherche maximale en arrière pour les requêtes
-      max_query_length = "72h" # Durée maximale d'une requête en heures
-      max_query_parallelism = 16 # Nombre maximal de requêtes parallèles
-      ingestion_rate_mb = 1024
+      enforce_metric_name: true # Imposer un nom de métrique valide pour toutes les requêtes
+      max_lookback_period: "144h" # Période de recherche maximale en arrière pour les requêtes
+      max_query_length: "72h" # Durée maximale d'une requête en heures
+      max_query_parallelism: 16 # Nombre maximal de requêtes parallèles
+      ingestion_rate_mb: 1024
 
     analytics:
       reporting_enabled: false
