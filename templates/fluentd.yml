@@ -38,7 +38,7 @@ data:
       extra_labels {{ .extra_labels }}
       send_threads  4
     </match>
-    {{ end }}
+    {{ end -}}
 
 ---
 apiVersion: v1

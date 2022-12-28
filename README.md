@@ -1,3 +1,7 @@
+<img src="https://static.wixstatic.com/media/84b0cf_beb914d4ae1c4a67a943e2a56de2b767~mv2.png/v1/fill/w_216,h_65,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logo-data354_CL.png"/>
+
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Grafana_logo.svg/1200px-Grafana_logo.svg.png" style="height:2cm; display: inline-block" />
+
 MS54 is a set of monitoring and logging tools (Loki, Grafana, Prometheus, FLuentd) that aims to facilitate the management of logs and the monitoring of metrics of several applications.
 
 - Grafana is an open-source tool for creating and displaying interactive dashboards of metric data. It can be used to monitor the performance of systems and applications, and to identify trends and patterns that may indicate issues or problems.

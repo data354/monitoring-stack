@@ -1,6 +1,22 @@
 grafana:
   enabled: true
   nodeport: 30100
+  config:
+    dashboards:
+      directory: /var/lib/grafana/dashboards
+      remote_files: 
+        - https://raw.githubusercontent.com/dykoffi/monitor-api-test/main/dashboards/Test%20dashboard-1672157440167.json
+        
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus:9090
+        isDefault: false
+
+      - name: Loki
+        type: loki
+        url: http://loki:3100
+        isDefault: true
 
 loki:
   enabled: true
@@ -40,3 +56,18 @@ fluentd:
         flush_interval: 5s
         flush_at_shutdown: true
         extra_labels: '{"job":"airflow"}'
+
+      - name: "spark.**"
+        flush_interval: 5s
+        flush_at_shutdown: true
+        extra_labels: '{"job":"spark"}'
+
+      - name: "minio.**"
+        flush_interval: 5s
+        flush_at_shutdown: true
+        extra_labels: '{"job":"minio"}'
+      
+      - name: "hive.**"
+        flush_interval: 5s
+        flush_at_shutdown: true
+        extra_labels: '{"job":"hive"}'
