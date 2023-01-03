@@ -47,27 +47,22 @@ fluentd:
   config:
     loki_url: "http://loki:3100"
     tags:
-      - name: "api.**"
+      - name: "worker.**"
         flush_interval: 5s
         flush_at_shutdown: true
-        extra_labels: '{"job":"api"}'
-
-      - name: "airflow.**"
-        flush_interval: 5s
-        flush_at_shutdown: true
-        extra_labels: '{"job":"airflow"}'
+        extra_labels: '{"job":"worker"}'
 
       - name: "spark.**"
         flush_interval: 5s
         flush_at_shutdown: true
         extra_labels: '{"job":"spark"}'
 
-      - name: "minio.**"
+      - name: "scheduler.**"
         flush_interval: 5s
         flush_at_shutdown: true
-        extra_labels: '{"job":"minio"}'
+        extra_labels: '{"job":"scheduler"}'
       
-      - name: "hive.**"
+      - name: "webserver.**"
         flush_interval: 5s
         flush_at_shutdown: true
-        extra_labels: '{"job":"hive"}'
+        extra_labels: '{"job":"webserver"}'
